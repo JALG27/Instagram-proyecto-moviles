@@ -27,13 +27,14 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(400).json({ msg: 'Porfavor, envia tu email y tu password' });
     }
     const user = yield user_1.default.findOne({ email: req.body.email });
-    console.log(user);
+    console.log(req.body);
     if (user) {
         return res.status(400).json({ msg: 'El usuario ya existe' });
     }
-    const newUser = new user_1.default(req.body);
-    yield newUser.save();
-    return res.status(201).json(newUser);
+    console.log('hola');
+    const Newuser = new user_1.default(req.body);
+    yield Newuser.save();
+    return res.status(201).json(Newuser);
 });
 exports.signUp = signUp;
 //controlador de login

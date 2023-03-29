@@ -18,13 +18,14 @@ export const signUp = async (req: Request, res: Response): Promise<Response> => 
     }
     
     const user = await User.findOne({email: req.body.email});
-    console.log(user)
+    console.log(req.body)
     if(user) {
         return res.status(400).json({msg: 'El usuario ya existe'});
     }
-    const newUser = new User(req.body);
-    await newUser.save();
-    return res.status(201).json(newUser);
+    console.log('hola')
+    const Newuser = new User(req.body);
+    await Newuser.save();
+    return res.status(201).json(Newuser);
 }
 
 //controlador de login
