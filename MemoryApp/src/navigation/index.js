@@ -1,20 +1,19 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import AuthStack from './navigationFiles/AuthStack'
+import { NavigationContainer } from '@react-navigation/native'
+import { enableScreens } from 'react-native-screens';
+enableScreens(false);
+
 
 const Navigation = () => {
     return (
-        <SafeAreaView styles={styles.container}>
-            <Text>index</Text>
-        </SafeAreaView>)
+        <NavigationContainer styles={{}}>
+            <AuthStack />
+        </NavigationContainer>
+    )
 }
 
 export default Navigation
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-})
+const styles = StyleSheet.create({})
