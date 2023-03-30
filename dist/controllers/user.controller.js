@@ -23,35 +23,34 @@ function createToken(user) {
 }
 //controlador de registro
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).json({ msg: 'Porfavor, envia tu email y tu password' });
+    if (!req.body.username || !req.body.password) {
+        return res.status(400).json({ msg: 'Please, send your username and password' });
     }
-    const user = yield user_1.default.findOne({ email: req.body.email });
+    const user = yield user_1.default.findOne({ username: req.body.username });
     console.log(req.body);
     if (user) {
-        return res.status(400).json({ msg: 'El usuario ya existe' });
+        return res.status(400).json({ msg: 'The user already exist' });
     }
-    console.log('hola');
     const Newuser = new user_1.default(req.body);
     yield Newuser.save();
-    return res.status(201).json(Newuser);
+    return res.status(201).json({ Newuser, msg: 'User registered succesfully' });
 });
 exports.signUp = signUp;
 //controlador de login
 const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).json({ msg: 'Porfavor, envia tu email y tu password' });
+    if (!req.body.username || !req.body.password) {
+        return res.status(400).json({ msg: 'Please, send your username and password' });
     }
-    const user = yield user_1.default.findOne({ email: req.body.email });
+    const user = yield user_1.default.findOne({ username: req.body.username });
     if (!user) {
-        return res.status(400).json({ msg: 'El usuario no existe' });
+        return res.status(400).json({ msg: 'The user dont exist' });
     }
     const isMatch = yield user.comparePassword(req.body.password);
     if (isMatch) {
         return res.status(200).json({ token: createToken(user) });
     }
     return res.status(400).json({
-        msg: 'El email o el password son incorrectos'
+        msg: 'The user or password are incorrect'
     });
 });
 exports.signIn = signIn;

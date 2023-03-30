@@ -13,31 +13,30 @@ function createToken(user: IUser) {
 //controlador de registro
 
 export const signUp = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).json({msg: 'Porfavor, envia tu email y tu password'})
+    if (!req.body.username || !req.body.password) {
+        return res.status(400).json({msg: 'Please, send your username and password'})
     }
     
-    const user = await User.findOne({email: req.body.email});
+    const user = await User.findOne({username: req.body.username});
     console.log(req.body)
     if(user) {
-        return res.status(400).json({msg: 'El usuario ya existe'});
+        return res.status(400).json({msg: 'The user already exist'});
     }
-    console.log('hola')
     const Newuser = new User(req.body);
     await Newuser.save();
-    return res.status(201).json(Newuser);
+    return res.status(201).json({Newuser, msg:'User registered succesfully'});
 }
 
 //controlador de login
 
 export const signIn = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).json({msg: 'Porfavor, envia tu email y tu password'})
+    if (!req.body.username || !req.body.password) {
+        return res.status(400).json({msg: 'Please, send your username and password'})
     }
 
-    const user = await User.findOne({email: req.body.email})
+    const user = await User.findOne({username: req.body.username})
     if(!user) {
-        return res.status(400).json({msg: 'El usuario no existe'});
+        return res.status(400).json({msg: 'The user dont exist'});
     }
     const isMatch = await user.comparePassword(req.body.password)
     if (isMatch) {
@@ -45,6 +44,6 @@ export const signIn = async (req: Request, res: Response): Promise<Response> => 
     }
 
     return res.status(400).json({
-        msg: 'El email o el password son incorrectos'
+        msg: 'The user or password are incorrect'
     });
 }
