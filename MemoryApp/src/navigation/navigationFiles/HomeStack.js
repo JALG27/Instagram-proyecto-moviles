@@ -14,16 +14,17 @@ const Stack = createStackNavigator()
 
 const HomeStack = ({ navigation }) => {
 
-const onSavedPressed = () => {
-  navigation.navigate("Saved")
-}
+  const onSavedPressed = () => {
+    navigation.navigate("HomeSaved")
+  }
 
   return (
     <Stack.Navigator screenOptions={{
       headerBackTitleVisible: false,
-      headerTintColor: 'black'
+      headerTintColor: 'black',
     }}>
       <Stack.Screen name="Home" component={HomeScreen} options={{
+        title: "",
         headerLeft: () => (
           <Image style={{ width: 130, marginLeft: 10 }} source={logo} resizeMode="contain" />
         ),
@@ -35,13 +36,20 @@ const onSavedPressed = () => {
               size={27}
             />
           </TouchableOpacity>
-        )
+        ),
       }} />
-      <Stack.Screen name="UserProfile" component={UserProfileScreen} />
-      <Stack.Screen name="Post" component={PostScreen} />
-      <Stack.Screen name="Saved" component={SavedScreen} options = {{
+      <Stack.Screen name="HomeUserProfile" component={UserProfileScreen} />
+      <Stack.Screen name="HomePost" component={PostScreen} />
+      <Stack.Screen name="HomeSaved" component={SavedScreen} options={{
         title: "Saved Memories",
-      }}/>
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 24,
+          paddingRight: '50%'
+        },
+        headerStyle: {
+        },
+      }} />
     </Stack.Navigator>
   )
 }

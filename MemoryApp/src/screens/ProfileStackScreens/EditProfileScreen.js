@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
 
 const EditProfileScreen = () => {
   return (
-    <View>
+    <ScrollView>
       <Text>EditProfileScreen</Text>
-    </View>
+    </ScrollView>
   )
 }
 

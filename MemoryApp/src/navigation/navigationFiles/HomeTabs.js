@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
@@ -8,6 +8,7 @@ import SearchStack from './SearchStack';
 import MessagesStack from './MessagesStack';
 import NewPostScreen from '../../screens/SharedScreens/NewPostScreen';
 import ProfileStack from './ProfileStack';
+import logo from '../../../assets/m__mLogoColors.png'
 
 const Tabs = createBottomTabNavigator()
 const TabIconSize = 32
@@ -18,7 +19,9 @@ const HomeTabs = () => {
     return (
         <Tabs.Navigator initialRouteName='HomeStack' screenOptions={{
             headerShown: false,
-            tabBarShowLabel: false
+            tabBarShowLabel: false,
+            headerBackTitleVisible: false,
+            headerTintColor: 'black',
         }}>
             <Tabs.Screen name="HomeStack" component={HomeStack} options={{
                 tabBarIcon: ({ focused }) => (
@@ -36,7 +39,18 @@ const HomeTabs = () => {
                         size={TabIconSize} />
                 ),
             }} />
-            <Tabs.Screen name="NewPostScreen" component={NewPostScreen}options={{
+            <Tabs.Screen name="NewPostScreen" component={NewPostScreen} options={{
+                headerShown: true,
+                headerLeft: () => (
+                    <Image style={{ width: 30, marginLeft: 13, marginBottom: 6 }} source={logo} resizeMode="contain" />
+                ),
+                title: "New Moment",
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                    fontSize: 24,
+                },
+                headerStyle: {
+                },
                 tabBarIcon: ({ focused }) => (
                     <Ionicons
                         style={{ color: 'black' }}

@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
 
 const SearchScreen = () => {
   return (
-    <View>
+    <ScrollView>
       <Text>SearchScreen</Text>
-    </View>
+    </ScrollView>
   )
 }
 

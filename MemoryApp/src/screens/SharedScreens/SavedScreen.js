@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
 
 const SavedScreen = () => {
   return (
-    <View>
+    <ScrollView>
       <Text>SavedScreen</Text>
-    </View>
+    </ScrollView>
   )
 }
 
